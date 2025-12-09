@@ -5,7 +5,7 @@ This repository contains my personal Neovim configuration, built upon a modular 
 
 ### Install Neovim
 
-This configuration targets *only* the latest ['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest ['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) versions of Neovim. Please ensure you have the latest versions installed.
+This configuration targets *only* the latest ['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest ['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) versions of Neovim.
 
 ### Install External Dependencies
 
