@@ -112,19 +112,13 @@ return {
       -- Hide the cursor on the dashboard
       ---------------------------------------------------------------------
       local cursor_group = vim.api.nvim_create_augroup('StartupCursorHide', { clear = true })
+      local original_guicursor = vim.go.guicursor
 
       vim.api.nvim_create_autocmd('FileType', {
         group = cursor_group,
         pattern = 'startup',
         callback = function()
-          vim.opt_local.guicursor = 'a:StartupHiddenCursor'
-          -- Note: We don't need to restore it manually because switching buffers
-          -- automatically reverts local window options if not set globally,
-          -- but just in case, let's be safe.
-          -- Actually, guicursor IS global, so we DO need to restore it.
-          local old_guicursor = vim.go.guicursor
-
-          -- Force global update for this window context (trickier with global option)
+          -- Force global update for this window context
           vim.opt.guicursor = 'a:StartupHiddenCursor'
 
           vim.api.nvim_create_autocmd('BufLeave', {
@@ -132,7 +126,7 @@ return {
             buffer = 0,
             once = true,
             callback = function()
-              vim.opt.guicursor = old_guicursor
+              vim.opt.guicursor = original_guicursor
             end,
           })
         end,
