@@ -41,6 +41,28 @@ return {
       end
 
       ---------------------------------------------------------------------
+      -- Helper Commands
+      ---------------------------------------------------------------------
+      -- Wrapper to trigger the native Neorg new note prompt
+      vim.api.nvim_create_user_command('NeorgNewAction', function()
+        -- Feed the keys for the Neorg "new note" plug mapping.
+        -- We use <Plug>(neorg.dirman.new-note) which triggers the interactive prompt.
+        local key = vim.api.nvim_replace_termcodes('<Plug>(neorg.dirman.new-note)', true, true, true)
+        vim.api.nvim_feedkeys(key, 'm', false)
+      end, {})
+
+      -- Wrapper to find files in the notes directory using Telescope
+      vim.api.nvim_create_user_command('NeorgFindFiles', function()
+        local notes_dir = vim.fn.expand('~/notes')
+        -- Ensure the notes directory exists
+        if vim.fn.isdirectory(notes_dir) == 0 then
+          vim.fn.mkdir(notes_dir, 'p')
+        end
+        -- Launch Telescope in the notes directory
+        require('telescope.builtin').find_files({ cwd = notes_dir, prompt_title = "Find Notes" })
+      end, {})
+
+      ---------------------------------------------------------------------
       -- Startup Config
       ---------------------------------------------------------------------
       require('startup').setup {
@@ -75,6 +97,8 @@ return {
             { '  Find File', 'Telescope find_files', 'f' },
             { '  Recent Projects', 'Telescope projects', 'p' },
             { '  File Explorer', 'Neotree toggle', 'e' },
+            { '  Open Notes', 'NeorgFindFiles', 'S' }, -- Changed key from 'o' to 'S'
+            { '  New Note', 'NeorgNewAction', 'N' },
             { '󰗼  Quit', 'qa', 'q' },
           },
         },
