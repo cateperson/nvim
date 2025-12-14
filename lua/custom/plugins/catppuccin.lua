@@ -31,10 +31,7 @@ return {
 				return "catppuccin"
 			end
 
-			-- Apply saved theme or default
 			vim.cmd.colorscheme(load_theme())
-
-			-- Toggle between Catppuccin and Everforest
 			vim.keymap.set("n", "<leader>tt", function()
 				if vim.g.colors_name == "everforest" then
 					vim.cmd.colorscheme("catppuccin")
