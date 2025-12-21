@@ -6,7 +6,15 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha",
+				transparent_background = true,
 				auto_integrations = true,
+				integrations = {
+					neotree = true,
+					which_key = true,
+					telescope = {
+						enabled = true,
+					},
+				},
 			})
 
 			local theme_file = vim.fn.stdpath("data") .. "/current_theme"
