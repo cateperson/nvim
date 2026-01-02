@@ -11,11 +11,13 @@ This configuration targets *only* the latest ['stable'](https://github.com/neovi
 
 External Requirements:
 
-*   Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
-*   [ripgrep](https://github.com/BurntSushi/ripgrep#installation), [fd-find](https://github.com/sharkdp/fd#installation)
-*   **luarocks**: Required for managing Lua dependencies.
-*   Clipboard tool (xclip/xsel/win32yank or other depending on the platform)
-*   A [Nerd Font](https://www.nerdfonts.com/): required for neorg, adds icons
+*   **Basic Utils**: `git`, `make`, `unzip`, `curl`
+*   **C Compiler**: `gcc` or `clang` (Required for `nvim-treesitter`)
+*   **[ripgrep](https://github.com/BurntSushi/ripgrep#installation)** & **[fd-find](https://github.com/sharkdp/fd#installation)**: Required for `telescope.nvim`
+*   **LuaJIT** & **Luarocks**: Required for `neorg` and managing Lua dependencies
+*   **Node.js** & **npm**: Required for `mason.nvim` to install tooling (e.g. `markdownlint`)
+*   **Clipboard tool**: `xclip` / `xsel` (X11), `wl-copy` (Wayland), or `win32yank` (Windows)
+*   **[Nerd Font](https://www.nerdfonts.com/)**: Required for icons and `neorg`
 
 > [!NOTE]
 > See [Install Recipes](#Install-Recipes) for Macos and Linux specific for quick install snippets.
@@ -41,7 +43,7 @@ Below you can find OS specific install instructions for Neovim and dependencies.
 <details><summary>macOS Install Steps</summary>
 
 ```sh
-brew install neovim ripgrep fd git luarocks
+brew install neovim ripgrep fd git luarocks luajit node
 ```
 </details>
 
@@ -50,6 +52,25 @@ brew install neovim ripgrep fd git luarocks
 <details><summary>Arch Install Steps</summary>
 
 ```sh
-sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim luarocks
+sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim luarocks luajit nodejs npm
+```
+</details>
+
+#### Ubuntu / Debian Install Steps
+
+<details><summary>Ubuntu Install Steps</summary>
+
+```sh
+sudo apt update
+sudo apt install -y build-essential git unzip ripgrep fd-find neovim luarocks luajit nodejs npm
+```
+</details>
+
+#### Fedora Install Steps
+
+<details><summary>Fedora Install Steps</summary>
+
+```sh
+sudo dnf install -y gcc make git ripgrep fd-find neovim luarocks luajit nodejs npm unzip
 ```
 </details>
